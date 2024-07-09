@@ -1,0 +1,258 @@
+.main-container {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Example styling for heading inside main container */
+.main-container h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+/* Example styling for paragraph inside main container */
+.main-container p {
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #caf1df;
+    text-align: center;
+    padding: 50px;
+}
+
+.container {
+    padding: 1px;
+    margin-bottom: 10px;
+}
+
+.textbox {
+    background-color: #ffffff;
+    /* White background */
+    color: #000000;
+    /* Black text color */
+    border: 1px solid #000000;
+    /* Black border */
+    padding: 10px;
+    /* Padding inside the textbox */
+    font-size: 12px;
+    /* Font size */
+    min-width: 200px;
+    /* Minimum width */
+    min-height: 50px;
+    /* Minimum height */
+    resize: vertical;
+    /* Allow vertical resizing */
+    overflow: auto;
+    /* Auto scrollbars if content overflows */
+    white-space: normal;
+    /* Allow text wrapping */
+    word-wrap: break-word;
+    /* Break long words */
+    border-radius: 5px;
+    /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Shadow for depth */
+}
+
+
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    /* Specify a common font for better cross-browser consistency */
+    line-height: 1.6;
+    /* Improve readability by increasing line height */
+    margin: 0;
+    /* Remove default margin */
+    padding: 0;
+    /* Remove default padding */
+    background-color: #f0f0f0;
+    /* Set a light background color */
+}
+
+/* Container styles */
+.container_m {
+    max-width: 800px;
+    /* Limit width of main containers */
+    margin: 20px auto;
+    /* Center align and add space around containers */
+    background-color: #d8d8d8;
+    /* White background for containers */
+    padding: 20px;
+    /* Add padding inside containers */
+    border: 1px solid #ddd;
+    /* Add a border around containers */
+    border-radius: 8px;
+    /* Rounded corners for containers */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Add a subtle shadow for depth */
+}
+
+.top-bar {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.styled-input {
+    width: calc(100% - 12px);
+    /* Adjust width to fit inside container with padding */
+    padding: 10px;
+    /* Add padding inside input */
+    font-size: 16px;
+    /* Increase font size for better readability */
+    border: 1px solid #ccc;
+    /* Add a border */
+    border-radius: 5px;
+    /* Rounded corners */
+    box-sizing: border-box;
+    /* Ensure padding and border are included in width */
+    transition: border-color 0.3s ease-in-out;
+    /* Smooth transition for border color */
+}
+
+.styled-input:focus {
+    outline: none;
+    /* Remove default focus outline */
+    border-color: #007bff;
+    /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    /* Add a subtle shadow on focus */
+}
+
+/* Button styles */
+.button-black-border {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.button-black-border:hover {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.button-black-border_2 {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+
+.container_2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* Space between containers */
+}
+
+.container_f {
+    flex: 1 1 300px;
+    /* Flexible width with minimum width of 300px */
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.proposal-content {
+    margin-top: 10px;
+    /* Space between content and button */
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow-wrap: break-word;
+    /* Word wrap for long text */
+}
+
+
+.floating-box {
+    display: none;
+    /* Initially hidden */
+    position: fixed;
+    z-index: 100;
+    /* Ensure it appears above other content */
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    /* Optional: Box shadow for effect */
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 300px;
+}
+
+/* Optional: Styling for the close button */
+.close-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: #000000;
+}
+
+.spinner {
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid #3498db;
+    /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: fixed;
+    top: 20%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.hidden {
+    display: none;
+}

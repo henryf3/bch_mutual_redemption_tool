@@ -1,0 +1,60 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Contract</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="/p2p_script"></script>
+
+</head>
+
+<body>
+    <h2 class="top-bar">Generate a BCH p2p contract </h2>
+    <div id="container_form" class="container_m">
+        <p>First, please introduce this data, you can read how to get this data at <a
+                href="https://github.com/henryf3/bch_mutual_redemption_tool?tab=readme-ov-file#a-how-to-get-credentials">link</a>.
+        </p>
+        <form id="p2p_form">
+
+            <label for="nom_units">Nominal Units (USD cents):</label>
+            <input type="number" id="nom_units" name="nom_units" class="button-black-border" required>
+            <br><br>
+
+            <label for="cont_dur_insec">Contract duration in seconds:</label>
+            <input type="number" id="cont_dur_insec" name="cont_dur_insec" class="button-black-border" required>
+            <br><br>
+
+            <label for="low_liq_mult">Low liquidation multiplier:</label>
+            <input type="number" id="low_liq_mult" name="low_liq_mult" class="button-black-border" step="any" required>
+            <br><br>
+
+            <label for="hig_liq_mult">High liquidation multiplier:</label>
+            <input type="numer" id="hig_liq_mult" name="hig_liq_mult" class="button-black-border" step="any" required>
+            <br><br>
+
+            <label for="p1_short_key">Peer1 Short Private Key:</label>
+            <input type="text" id="p1_short_key" name="p1_short_key" class="button-black-border" required>
+            <br><br>
+
+            <label for="p2_long_key">Peer2 Long Private Key:</label>
+            <input type="text" id="p2_long_key" name="p2_long_key" class="button-black-border" required>
+            <br><br>
+
+            <label for="auth_token">Authentication Token:</label>
+            <input type="text" id="auth_token" name="auth_token" class="button-black-border" required>
+            <br><br>
+
+            <button type="submit" class="button-black-border">Send</button>
+        </form>
+        <p id="error-message" style="color: red;"></p>
+    </div>
+    <div id="spinner" class="spinner hidden"></div>
+    <div id="P2pResponse" class="container_m hidden">
+        <p id="P2pResponseContent"></p>
+    </div>
+</body>
+
+</html>

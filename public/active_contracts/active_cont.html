@@ -1,0 +1,57 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settle BCH contracts</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="/encoder" async></script>
+    <script src="/act_cont_script"></script>
+
+</head>
+
+<body>
+    <div class="top-bar">Active BCH contracts </div>
+    <div id="container_form" class="container_m">
+        <p>First, please introduce this data, you can read how to get this data at this <a
+                href="https://github.com/henryf3/bch_mutual_redemption_tool?tab=readme-ov-file#a-how-to-get-credentials">link</a>
+            .</p>
+        <form id="keys_form">
+            <label for="atoken">Authorization token:</label>
+            <input type="text" id="atoken" name="atoken" class="button-black-border" required>
+            <br><br>
+
+            <label for="pkey">Private key:</label>
+            <input type="text" id="pkey" name="pkey" class="button-black-border" required>
+            <br><br>
+
+            <button type="submit" class="button-black-border">Send</button>
+        </form>
+        <p id="error-message" style="color: red;"></p>
+    </div>
+
+    <div id="file_form" class="container_m hidden">
+        <p>Load your csv file with your contracts info: </p>
+        <input type="file" class="button-black-border" id="csvFile" accept=".csv" />
+        <br />
+        <br />
+        <button onclick="load_data_from_csv()" class="button-black-border" />Submit </button>
+    </div>
+    <div id="spinner" class="spinner hidden"></div>
+    <div class="container_m hidden" id="section0">
+        <p>You don't have active contracts. </p>
+    </div>
+    <div class="container_m hidden" id="section1">
+        <h2>Earlier settlement enabled: </h2>
+        <p>You can generate proposals for these contracts </p>
+        <div id="contracts" class="main-container"></div>
+    </div>
+    <div class="container_m hidden" id="section2">
+        <h2>No earlier settlement enabled: </h2>
+        <div id="no_settlement_contracts" class="main-container"></div>
+    </div>
+</body>
+
+</html>

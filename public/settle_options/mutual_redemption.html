@@ -1,0 +1,45 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settle Down Options</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="/mut_red"></script>
+</head>
+
+<body>
+    <h1 class="top-bar">Settle Utilities</h1>
+
+    <div class="container_m" id="main_container">
+        <div class="container_f">
+            <h3>Complete Mutual Redemption</h3>
+        </div>
+
+        <div class="container_f">
+            <input type="file" id="OwnProposal" class="button-black-border">
+            <button onclick="loadOwnProposal()" class="button-black-border">Load Own Proposal</button>
+            <div id="OwnProposalContent" class="proposal-content"></div>
+        </div>
+
+        <div class="container_f">
+            <input type="file" id="CounterProposal" class="button-black-border">
+            <button onclick="loadCounterProposal()" class="button-black-border">Load Counter Proposal</button>
+            <div id="CounterProposalContent" class="proposal-content"></div>
+        </div>
+
+        <div class="container_f">
+            <button onclick="complete_mutual_redemption()" id="CMR" class="button-black-border">Complete
+            </button>
+        </div>
+
+    </div>
+    <div id="spinner" class="spinner hidden"></div>
+    <div id="CMutualRed" class="container_m hidden">
+        <p id="CMutualRedContent"></p>
+    </div>
+
+
+</html>

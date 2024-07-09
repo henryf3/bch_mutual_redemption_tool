@@ -1,0 +1,35 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settle Down Options</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="/encoder" async></script>
+    <script src="/generate_pro"></script>
+</head>
+
+<body>
+    <h1 class="top-bar">Settle Utilities</h1>
+
+
+    <div class="container_m">
+        <div class="container_f">
+            <h3>Mutual Redemption Proposal Generation</h3>
+        </div>
+        <div class="container_f">
+            <label for="integerInput">Enter a price in USD (leave empty for refund):</label>
+            <input type="number" id="priceInput" name="priceInput" class="styled-input" min="1" max="1000" step="1">
+        </div>
+
+        <div class="container_f">
+            <button onclick="get_proposal()" id="GMRP" class="button-black-border">Generate</button>
+        </div>
+        <div id="GenProp" class="container_f hidden">
+            <p id="GenPropContent"></p>
+        </div>
+    </div>
+
+</html>
