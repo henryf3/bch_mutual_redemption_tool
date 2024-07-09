@@ -1,0 +1,58 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settle Down Options</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/encoder" async></script>
+    <script src="/settle_script"></script>
+</head>
+
+<body>
+    <h1>Settle Utilities:</h1>
+
+
+    <div class="container_m">
+        <div class="container_s">
+            <label for="integerInput">Enter a price in USD (leave empty for refund):</label>
+            <input type="number" id="priceInput" name="priceInput" class="styled-input" min="1" max="1000" step="1">
+        </div>
+
+        <div>
+            <button onclick="get_proposal()" id="GMRP" class="button-black-border">Generate Mutual Redemption
+                Proposal</button>
+        </div>
+    </div>
+
+    <div class="container_m">
+        <div class="container">
+            <div class="container_f">
+                <input type="file" id="OwnProposal" class="button-black-border">
+                <button onclick="loadOwnProposal()" class="button-black-border">Load Own Proposal</button>
+                <div id="OwnProposalContent" class="proposal-content"></div>
+            </div>
+
+            <div class="container_f">
+                <input type="file" id="CounterProposal" class="button-black-border">
+                <button onclick="loadCounterProposal()" class="button-black-border">Load Counter Proposal</button>
+                <div id="CounterProposalContent" class="proposal-content"></div>
+            </div>
+
+            <div class="container_f">
+                <button onclick="complete_mutual_redemption()" id="CMR" class="button-black-border">Complete Mutual
+                    Redemption
+                </button>
+            </div>
+            <div id="floatingBox" class="container_f">
+                <p id="floatingBoxContent"></p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</html>
