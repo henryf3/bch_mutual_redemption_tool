@@ -119,8 +119,7 @@ function loadCounterProposal() {
 
 
 
-function showFloatingMessage(message) {
-    // const floatingBox = document.getElementById('floatingBox');
+function setResponseMessage(message) {
     const floatingBoxContent = document.getElementById('floatingBoxContent');
     // Set custom text
     floatingBoxContent.innerText = message;
@@ -129,6 +128,7 @@ function showFloatingMessage(message) {
 
 
 async function complete_mutual_redemption() {
+    setResponseMessage("")
 
     const url = 'http://localhost:3000/completeMutualRedemption'
 
@@ -141,14 +141,12 @@ async function complete_mutual_redemption() {
     }
 
     else {
-        // own_proposal = `"${own_proposal}"`
-        // cnt_proposal = `"${cnt_proposal}"`
         endpointUrl = `${url}?cont_ad=${encodeURIComponent(contract_address)}&own_p=${encodeURIComponent(own_proposal)}&cont_p=${encodeURIComponent(cnt_proposal)}`;
 
         const response = await fetch(endpointUrl);
         response_message = await response.json()
         console.log(response_message['message'])
-        showFloatingMessage(response_message['message'])
+        setResponseMessage(response_message['message'])
     }
 
 }

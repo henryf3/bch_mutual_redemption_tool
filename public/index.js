@@ -73,7 +73,7 @@ async function fetchData() {
             const btn = document.createElement('button');
             btn.id = item.address;
             btn.innerText = item.address;
-            btn.className = "button-black-border"
+
 
             const txt_info = document.createElement('text');
             txt_info.id = "txt_info".concat(item.address);
@@ -105,10 +105,12 @@ async function fetchData() {
                 btn.addEventListener('click', function () {
                     open_settle_page(item.address);
                 });
+                btn.className = "button-black-border"
             } else {
                 no_set_cont_cnt += 1
                 no_set_contracts.appendChild(divA);
                 no_set_contracts.appendChild(divB);
+                btn.className = "button-black-border_2"
 
             }
 

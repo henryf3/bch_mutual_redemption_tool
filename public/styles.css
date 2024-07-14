@@ -157,6 +157,21 @@ body {
     border-color: #333;
 }
 
+.button-black-border_2 {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
 
 .container_2 {
     display: flex;
