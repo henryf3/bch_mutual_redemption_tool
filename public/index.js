@@ -48,19 +48,26 @@ async function fetchData() {
         data = decodeExtendedJsonObject(enc_data)
         console.log(data)
 
-        const element = document.getElementById('contracts');
 
+        const f_title = document.getElementById('section0');
+        const f_contracts = document.getElementById('section1');
+        const f_no_set_contracts = document.getElementById('section2');
 
+        const contracts = document.getElementById('contracts');
+        const no_set_contracts = document.getElementById('no_settlement_contracts');
 
+        let cont_cnt = 0
+        let no_set_cont_cnt = 0
         data.forEach((item, idx) => {
+
+
             const divA = document.createElement('div');
             divA.id = "div_a".concat(item.address)
             divA.className = "container"
             const divB = document.createElement('div');
             divB.id = "div_b".concat(item.address)
             divB.className = "container"
-            element.appendChild(divA);
-            element.appendChild(divB);
+
 
 
             const btn = document.createElement('button');
@@ -85,17 +92,39 @@ async function fetchData() {
                 show_text(txt_info.id);
             });
 
-            btn.addEventListener('click', function () {
-                open_settle_page(item.address);
-            });
+
 
             divA.appendChild(btn_info);
             divA.appendChild(btn);
             divB.appendChild(txt_info);
 
+            if (item.parameters.enableMutualRedemption === BigInt(1n)) {
+                cont_cnt += 1
+                contracts.appendChild(divA);
+                contracts.appendChild(divB);
+                btn.addEventListener('click', function () {
+                    open_settle_page(item.address);
+                });
+            } else {
+                no_set_cont_cnt += 1
+                no_set_contracts.appendChild(divA);
+                no_set_contracts.appendChild(divB);
+
+            }
 
 
         });
+        if (cont_cnt > 0) {
+            f_contracts.classList.remove('hidden');
+        }
+        if (no_set_cont_cnt > 0) {
+            f_no_set_contracts.classList.remove('hidden');
+        }
+
+        if (cont_cnt === 0 & no_set_cont_cnt === 0) {
+            f_title.classList.remove('hidden');
+        }
+
     } catch (error) {
         console.error('Error fetching data:', error);
     }

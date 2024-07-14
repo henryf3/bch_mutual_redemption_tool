@@ -20,7 +20,7 @@ following information:
 - Peer2_long_private_key: key of the long side.
 
 Pd: You can generate private keys using the section Addresses of
-the Electrum Cash Wallet. (Right click in one address and 'get private key' option).
+the Electron-Cash Wallet. (Right click in one address and 'get private key' option).
 
 
 #### **`.env`**
