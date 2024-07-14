@@ -22,6 +22,20 @@ function downloadTextFile(text, filename) {
     URL.revokeObjectURL(url);
 }
 
+function setResponseMessage(father, content, message, show) {
+    //put custom text
+    content.innerText = message;
+
+    // Show/hide father 
+    if (show) {
+
+        father.classList.remove('hidden');
+    } else {
+        father.classList.add('hidden');
+
+    }
+
+}
 
 
 function getQueryParams() {
@@ -45,6 +59,12 @@ const contract_address = getQueryParams()
 
 async function get_proposal() {
 
+    // Response elements
+    const GenPop = document.getElementById('GenProp');
+    const GenPopContent = document.getElementById('GenPropContent');
+    setResponseMessage(GenPop, GenPopContent, "", false)
+
+
     const url = 'http://localhost:3000/get_proposal'
     const element = document.getElementById('priceInput');
     const price = element.value;
@@ -63,9 +83,19 @@ async function get_proposal() {
 
     const response = await fetch(endpointUrl);
     proposal = await response.json()
-    encoded_proposal = encodeExtendedJson(proposal)
 
-    downloadTextFile(encoded_proposal, `${contract_address}_proposal.json`)
+
+    let message = ""
+    if ('message' in proposal) {
+        message = proposal['message']
+    } else {
+        message = "The proposal was generated, check the downloaded file."
+        encoded_proposal = encodeExtendedJson(proposal)
+        downloadTextFile(encoded_proposal, `${contract_address}_proposal.json`)
+    }
+    setResponseMessage(GenPop, GenPopContent, message, true)
+
+
 }
 
 
@@ -119,16 +149,11 @@ function loadCounterProposal() {
 
 
 
-function setResponseMessage(message) {
-    const floatingBoxContent = document.getElementById('floatingBoxContent');
-    // Set custom text
-    floatingBoxContent.innerText = message;
-}
-
-
 
 async function complete_mutual_redemption() {
-    setResponseMessage("")
+    const CMutualRed = document.getElementById('CMutualRed');
+    const CMutualRedContent = document.getElementById('CMutualRedContent');
+    setResponseMessage(CMutualRed, CMutualRedContent, "", false)
 
     const url = 'http://localhost:3000/completeMutualRedemption'
 
@@ -146,7 +171,8 @@ async function complete_mutual_redemption() {
         const response = await fetch(endpointUrl);
         response_message = await response.json()
         console.log(response_message['message'])
-        setResponseMessage(response_message['message'])
+        setResponseMessage(CMutualRed, CMutualRedContent, response_message['message'], true)
+
     }
 
 }

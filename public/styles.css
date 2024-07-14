@@ -102,12 +102,6 @@ body {
     /* Add a subtle shadow for depth */
 }
 
-.container_s {
-    margin-bottom: 15px;
-    /* Add space below small containers */
-}
-
-
 
 .styled-input {
     width: calc(100% - 12px);
