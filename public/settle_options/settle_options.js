@@ -65,7 +65,7 @@ async function get_proposal() {
     setResponseMessage(GenPop, GenPopContent, "", false)
 
 
-    const url = 'http://localhost:3000/get_proposal'
+    const url = '/get_proposal'
     const element = document.getElementById('priceInput');
     const price = element.value;
 
@@ -155,7 +155,7 @@ async function complete_mutual_redemption() {
     const CMutualRedContent = document.getElementById('CMutualRedContent');
     setResponseMessage(CMutualRed, CMutualRedContent, "", false)
 
-    const url = 'http://localhost:3000/completeMutualRedemption'
+    const url = '/completeMutualRedemption'
 
     let own_proposal = document.getElementById('OwnProposalContent').textContent;
     let cnt_proposal = document.getElementById('CounterProposalContent').textContent;

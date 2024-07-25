@@ -42,7 +42,7 @@ function build_text_info(object) {
 
 async function fetchData() {
     try {
-        const response = await fetch('http://localhost:3000/get_active_cont_data');
+        const response = await fetch('/get_active_cont_data');
         enc_data = await response.json()
 
         data = decodeExtendedJsonObject(enc_data)

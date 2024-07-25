@@ -28,11 +28,21 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+app.get('/act_cont', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/active_contracts', 'active_cont.html'));
+});
+
+app.get('/p2p_contract', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/p2p_contract', 'p2p_contract.html'));
+});
+
 // SCRIPT FILES 
+app.get('/idx_script', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.js'));
+});
 app.get('/act_cont_script', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/active_contracts', 'active_cont.js'));
 });
-
 app.get('/settle_script', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/settle_options', 'settle_options.js'));
 });
