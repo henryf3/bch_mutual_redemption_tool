@@ -18,7 +18,7 @@ following information:
 - High liquidation multiplier.
 - Peer1_short_private_key: key of the short side.
 - Peer2_long_private_key: key of the long side.
-
+- Authentication Token: token kdkdkd
 Pd: You can generate private keys using the section Addresses of
 the Electron-Cash Wallet. (Right click in one address and 'get private key' option).
 
@@ -31,6 +31,7 @@ LOW_LIQUIDATION_MULTIPLIER=0.75
 HIGH_LIQUIDATION_MULTIPLIER=1.25
 PEER1_SHORT_P_KEY=***********************************
 PEER2_LONG_P_KEY==***********************************
+token autkjdkdk =
 ```
 
 Once you have this information you can run `npm test` to create a contract, the information of the contract will appear in the console.
