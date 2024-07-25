@@ -1,0 +1,31 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settle BCH contracts</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/encoder" async></script>
+    <script src="/act_cont_script"></script>
+
+</head>
+
+<body>
+    <h2>Active BCH contracts </h2>
+    <div class="container_m hidden" id="section0">
+        <p>You don't have active contracts. </p>
+    </div>
+    <div class="container_m hidden" id="section1">
+        <h2>Earlier settlement enabled: </h2>
+        <p>You can generate proposals for these contracts </p>
+        <div id="contracts" class="main-container"></div>
+    </div>
+    <div class="container_m hidden" id="section2">
+        <h2>No earlier settlement enabled: </h2>
+        <div id="no_settlement_contracts" class="main-container"></div>
+    </div>
+</body>
+
+</html>

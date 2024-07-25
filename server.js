@@ -18,20 +18,29 @@ app.use(favicon(__dirname + '/assets/bch.webp'));
 // Serve static files (e.g., HTML, CSS, JS)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Handle root URL
+//Utilities 
+app.get('/encoder', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/utils', 'web_page_encoder.js'));
+});
+
+// RENDER HTML PAGES
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/idx_script', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.js'));
+// SCRIPT FILES 
+app.get('/act_cont_script', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/active_contracts', 'active_cont.js'));
 });
 
-app.get('/encoder', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'encoder.js'));
+app.get('/settle_script', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/settle_options', 'settle_options.js'));
 });
 
+
+// Functionality endpoints
 app.get('/get_proposal', async (req, res) => {
+
     const contract_address = req.query.c_address;
     const price = req.query.price
 
@@ -61,12 +70,6 @@ app.get('/completeMutualRedemption', async (req, res) => {
     // Send a response back
     res.send(response);
 });
-
-
-app.get('/settle_script', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'settle_options.js'));
-});
-
 
 app.get('/get_contract_status', async (req, res) => {
     const c_address = req.query.param1;
