@@ -30,8 +30,8 @@ CONTRACT_DURATION_IN_SECONDS=3600
 LOW_LIQUIDATION_MULTIPLIER=0.75
 HIGH_LIQUIDATION_MULTIPLIER=1.25
 PEER1_SHORT_P_KEY=***********************************
-PEER2_LONG_P_KEY==***********************************
-token autkjdkdk =
+PEER2_LONG_P_KEY=***********************************
+token autkjdkdk
 ```
 
 Once you have this information you can run `npm test` to create a contract, the information of the contract will appear in the console.
