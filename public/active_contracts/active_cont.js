@@ -1,5 +1,4 @@
 function show_text(txt_info_id) {
-
     const textBox = document.getElementById(txt_info_id);
     if (textBox.classList.contains('hidden')) {
         textBox.classList.remove('hidden');
@@ -40,14 +39,10 @@ function build_text_info(object) {
     return resultString
 }
 
-async function fetchData() {
+function fetchData(data) {
+
+
     try {
-        const response = await fetch('/get_active_cont_data');
-        enc_data = await response.json()
-
-        data = decodeExtendedJsonObject(enc_data)
-        console.log(data)
-
 
         const f_title = document.getElementById('section0');
         const f_contracts = document.getElementById('section1');
@@ -58,9 +53,8 @@ async function fetchData() {
 
         let cont_cnt = 0
         let no_set_cont_cnt = 0
+
         data.forEach((item, idx) => {
-
-
             const divA = document.createElement('div');
             divA.id = "div_a".concat(item.address)
             divA.className = "container"
@@ -116,6 +110,10 @@ async function fetchData() {
 
 
         });
+
+        const spinner = document.getElementById('spinner');
+        spinner.classList.add('hidden');
+
         if (cont_cnt > 0) {
             f_contracts.classList.remove('hidden');
         }
@@ -132,4 +130,85 @@ async function fetchData() {
     }
 }
 
-fetchData();
+
+function csvToArray(str, delimiter = ",") {
+
+    // slice from start of text to the first \n index
+    // use split to create an array from string by delimiter
+    const headers = str.slice(0, str.indexOf("\n")).split(delimiter);
+
+    // slice from \n index + 1 to the end of the text
+    // use split to create an array of each csv value row
+    const rows = str.slice(str.indexOf("\n") + 1).split("\n");
+
+    // Map the rows
+    // split values from each row into an array
+    // use headers.reduce to create an object
+    // object properties derived from headers:values
+    // the object passed as an element of the array
+    const arr = rows.map(function (row) {
+        const values = row.split(delimiter);
+        const el = headers.reduce(function (object, header, index) {
+            object[header] = values[index];
+            return object;
+        }, {});
+        return el;
+    });
+
+    // return the array
+    return arr;
+}
+
+function load_data_from_csv() {
+    const file_form = document.getElementById('file_form');
+    const csvFile = document.getElementById('csvFile');
+    const input = csvFile.files[0];
+    const reader = new FileReader();
+
+    reader.onload = async function (e) {
+        const text = e.target.result;
+        const data = csvToArray(text);
+
+        let contract_ads = []
+        let i = 0
+        while (i < data.length) {
+            if (data[i]['settlementTxId'] == '') {
+                contract_ads.push(data[i]['contractAddress'])
+            }
+            i++;
+        }
+
+        const url = '/get_active_cont_data'
+
+
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: contract_ads }),
+        })
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const response_data = await response.json();
+
+
+
+        fetchData(decodeExtendedJsonObject(response_data))
+
+    };
+
+    reader.readAsText(input);
+    file_form.classList.add('hidden')
+    const spinner = document.getElementById('spinner');
+    spinner.classList.remove('hidden');
+}
+
+
+
+
+

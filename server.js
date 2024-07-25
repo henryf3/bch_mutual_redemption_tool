@@ -2,8 +2,9 @@ import express from 'express';
 import path from 'path';
 import morgan from 'morgan';
 import favicon from 'serve-favicon'
+import bodyParser from 'body-parser';
 
-import { get_status, get_info_for_contract_addresses, signMutualRedemption, completeMutualRedemption } from './utils/anyhedge_functions.js';
+import { get_info_for_contract_addresses, signMutualRedemption, completeMutualRedemption } from './utils/anyhedge_functions.js';
 import { encodeExtendedJson, decodeExtendedJson } from './utils/encoder.js'
 
 const app = express();
@@ -12,7 +13,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 
 app.use(morgan('dev'));
-
+app.use(bodyParser.json());
 app.use(favicon(__dirname + '/assets/bch.webp'));
 
 // Serve static files (e.g., HTML, CSS, JS)
@@ -81,21 +82,11 @@ app.get('/completeMutualRedemption', async (req, res) => {
     res.send(response);
 });
 
-app.get('/get_contract_status', async (req, res) => {
-    const c_address = req.query.param1;
 
+app.post('/get_active_cont_data', async (req, res) => {
+    const cont_ls = req.body.data;
     // Call your function with the extracted parameters
-    let response = await get_status(c_address);
-    // console.log(response)
-    // Send a response back
-    res.send(response);
-});
-
-
-app.get('/get_active_cont_data', async (req, res) => {
-
-    // Call your function with the extracted parameters
-    let response = await get_info_for_contract_addresses();
+    let response = await get_info_for_contract_addresses(cont_ls);
     // console.log(typeof response)
     // Send a response back
     res.send(response);

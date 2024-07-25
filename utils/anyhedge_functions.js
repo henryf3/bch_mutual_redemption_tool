@@ -1,5 +1,4 @@
 import { AnyHedgeManager } from '@generalprotocols/anyhedge';
-import { get_active_contract_ads } from './load_contracts_from_csv.js'
 import { encodeExtendedJson, encodeExtendedJsonObject } from './encoder.js'
 
 const config =
@@ -33,9 +32,8 @@ const get_status = async function (contract_address) {
 };
 
 
-async function get_info_for_contract_addresses() {
-    let path_file = process.env.FILE_PATH
-    let contracts_ls = get_active_contract_ads(path_file)
+async function get_info_for_contract_addresses(contracts_ls) {
+
 
     let i = 0;
 
