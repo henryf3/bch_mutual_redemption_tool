@@ -5,8 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node --env-file=.env server.js",
-    "test": "node --env-file=.env utils/create_contract.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +15,21 @@
     "node",
     "bch"
   ],
+  "pkg": {
+    "type": "module",
+    "bin": "server.js",
+    "scripts": [
+      "utils/*.js"
+    ],
+    "assets": [
+      "public/*",
+      "assets/*"
+    ],
+    "targets": [
+      "latest-linux-x64"
+    ],
+    "outputPath": "dist"
+  },
   "author": "henryf3",
   "license": "ISC",
   "bugs": {

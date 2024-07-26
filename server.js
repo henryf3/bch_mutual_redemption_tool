@@ -4,7 +4,6 @@ import morgan from 'morgan';
 import favicon from 'serve-favicon'
 import bodyParser from 'body-parser';
 import open from 'open';
-
 import { get_info_for_contract_addresses, signMutualRedemption, completeMutualRedemption } from './utils/anyhedge_functions.js';
 import { encodeExtendedJson, decodeExtendedJson } from './utils/encoder.js'
 
@@ -106,6 +105,6 @@ app.post('/get_active_cont_data', async (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-    open('public/index.html');
+    open('http://localhost:3000/')
     console.log(`Server is running at http://localhost:${port}`);
 });
