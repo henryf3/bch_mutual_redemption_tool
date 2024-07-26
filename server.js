@@ -73,7 +73,7 @@ app.get('/get_proposal', async (req, res) => {
 
 
     // Call your function with the extracted parameters
-    let response = await signMutualRedemption(contract_address, big_int_price);
+    let response = await signMutualRedemption(authentication_token, private_key, contract_address, big_int_price);
     // console.log(response)
     // Send a response back
     res.send(response);
@@ -86,7 +86,7 @@ app.get('/completeMutualRedemption', async (req, res) => {
     const counter_proposal = req.query.cont_p
     const dec_own_proposal = decodeExtendedJson(own_proposal)
     const dec_count_proposal = decodeExtendedJson(counter_proposal)
-    let response = await completeMutualRedemption(contract_address, dec_own_proposal, dec_count_proposal);
+    let response = await completeMutualRedemption(authentication_token, private_key, contract_address, dec_own_proposal, dec_count_proposal);
     console.log(response)
 
     // Send a response back
