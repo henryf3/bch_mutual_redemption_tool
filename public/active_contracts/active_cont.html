@@ -14,7 +14,23 @@
 
 <body>
     <h2>Active BCH contracts </h2>
-    <div id="file_form" class="container_m">
+    <div id="container_form" class="container_m">
+        <p>First, please introduce this data, you can read how to get this data at URL.</p>
+        <form id="keys_form">
+            <label for="atoken">Authorization token:</label>
+            <input type="text" id="atoken" name="atoken" class="button-black-border" required>
+            <br><br>
+
+            <label for="pkey">Private key:</label>
+            <input type="text" id="pkey" name="pkey" class="button-black-border" required>
+            <br><br>
+
+            <button type="submit" class="button-black-border">Send</button>
+        </form>
+        <p id="error-message" style="color: red;"></p>
+    </div>
+
+    <div id="file_form" class="container_m hidden">
         <p>Load your csv file with your contracts info: </p>
         <input type="file" class="button-black-border" id="csvFile" accept=".csv" />
         <br />

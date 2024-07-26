@@ -1,20 +1,24 @@
 import { AnyHedgeManager } from '@generalprotocols/anyhedge';
 import { encodeExtendedJson, encodeExtendedJsonObject } from './encoder.js'
 
-const config =
-{
-    authenticationToken: process.env.AUTHENTICATION_TOKEN,
-    serviceDomain: 'api.anyhedge.com',
-    servicePort: 443,
-    serviceScheme: 'https'
-};
-const private_key = process.env.PRIVATE_KEY
 
-const anyHedgeManager = new AnyHedgeManager(config);
+function create_manager(authentication_token) {
+    const config =
+    {
+        authenticationToken: authentication_token,
+        serviceDomain: 'api.anyhedge.com',
+        servicePort: 443,
+        serviceScheme: 'https'
+    };
 
+    const anyHedgeManager = new AnyHedgeManager(config);
 
-const get_status = async function (contract_address) {
-    const contractData = await anyHedgeManager.getContractStatus(contract_address, private_key);
+    return anyHedgeManager
+
+}
+
+const get_status = async function (contract_address, manager, private_key) {
+    const contractData = await manager.getContractStatus(contract_address, private_key);
 
     // Output the contract status to the console
     // console.log('contract data:');
@@ -32,8 +36,8 @@ const get_status = async function (contract_address) {
 };
 
 
-async function get_info_for_contract_addresses(contracts_ls) {
-
+async function get_info_for_contract_addresses(a_token, p_key, contracts_ls) {
+    const manager = create_manager(a_token)
 
     let i = 0;
 
@@ -43,7 +47,7 @@ async function get_info_for_contract_addresses(contracts_ls) {
         let cont_address = contracts_ls[i]
         try {
             console.log("Estatus for contract:", cont_address)
-            let data = await get_status(cont_address)
+            let data = await get_status(cont_address, manager, p_key)
 
             // console.log(data['fundings'][0]['settlement'])
             // ## Just keep the contracts without settlement

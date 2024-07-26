@@ -16,6 +16,17 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(favicon(__dirname + '/assets/bch.webp'));
 
+
+var authentication_token;
+var private_key;
+app.post('/submit_keys', async (req, res) => {
+    authentication_token = req.body.atoken;
+    private_key = req.body.pkey;
+    console.log(authentication_token)
+    res.send({ "message": "Received succesfully" });
+});
+
+
 // Serve static files (e.g., HTML, CSS, JS)
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -84,11 +95,10 @@ app.get('/completeMutualRedemption', async (req, res) => {
 
 
 app.post('/get_active_cont_data', async (req, res) => {
+
     const cont_ls = req.body.data;
-    // Call your function with the extracted parameters
-    let response = await get_info_for_contract_addresses(cont_ls);
-    // console.log(typeof response)
-    // Send a response back
+    let response = await get_info_for_contract_addresses(authentication_token, private_key, cont_ls);
+
     res.send(response);
 });
 

@@ -1,3 +1,68 @@
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('keys_form').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+
+        const atokenInput = document.getElementById('atoken');
+        const atoken = atokenInput.value;
+
+        const pkeyInput = document.getElementById('pkey');
+        const pkey = pkeyInput.value;
+
+        const errorMessage = document.getElementById('error-message');
+        errorMessage.textContent = '';
+        // Define the minimum and maximum length
+        const minLength = 50;
+        const maxLength = 70;
+
+        // Validate the length of the username
+        if (atoken.length < minLength || atoken.length > maxLength) {
+            errorMessage.textContent = `Authorization token must be between ${minLength} and ${maxLength} characters.`;
+            return;
+        }
+        if (pkey.length < minLength || pkey.length > maxLength) {
+            errorMessage.textContent = `Private key must be between ${minLength} and ${maxLength} characters.`;
+            return;
+        }
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        const data = {};
+        formData.forEach((value, key) => (data[key] = value));
+
+        // console.log(data)
+
+        try {
+            const response = await fetch('/submit_keys', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+
+            const file_form = document.getElementById('file_form');
+            file_form.classList.remove("hidden")
+
+            const creds_cont = document.getElementById('container_form');
+            creds_cont.classList.add("hidden")
+
+            const result = await response.json();
+            console.log('Success:', result);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+});
+
+
+
 function show_text(txt_info_id) {
     const textBox = document.getElementById(txt_info_id);
     if (textBox.classList.contains('hidden')) {
