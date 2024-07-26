@@ -1,0 +1,54 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Contract</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="/p2p_script"></script>
+
+</head>
+
+<body>
+    <h2>New Active BCH contracts </h2>
+    <div id="container_form" class="container_m">
+        <p>First, please introduce this data, you can read how to get this data at URL.</p>
+        <form id="p2p_form">
+
+            <label for="nom_units">NOMINAL UNITS:</label>
+            <input type="number" id="nom_units" name="nom_units" class="button-black-border" required>
+            <br><br>
+
+            <label for="cont_dur_insec">CONTRACT DURATION INSECONDS:</label>
+            <input type="number" id="cont_dur_insec" name="cont_dur_insec" class="button-black-border" required>
+            <br><br>
+
+            <!-- <label for="pkey">LOW LIQUIDATION MULTIPLIER:</label>
+            <input type="number" id="pkey" name="pkey" class="button-black-border" required>
+            <br><br>
+            
+            <label for="pkey">HIGH LIQUIDATION MULTIPLIER:</label>
+            <input type="text" id="pkey" name="pkey" class="button-black-border" required>
+            <br><br>
+
+            <label for="pkey">PEER1 SHORT P KEY:</label>
+            <input type="text" id="pkey" name="pkey" class="button-black-border" required>
+            <br><br>
+
+            <label for="pkey">PEER2 LONG P KEY:</label>
+            <input type="text" id="pkey" name="pkey" class="button-black-border" required>
+            <br><br>
+
+            <label for="pkey">AUTHENTICATION TOKEN:</label>
+            <input type="text" id="pkey" name="pkey" class="button-black-border" required>
+            <br><br> -->
+
+            <button type="submit" class="button-black-border">Send</button>
+        </form>
+        <p id="error-message" style="color: red;"></p>
+    </div>
+</body>
+
+</html>
