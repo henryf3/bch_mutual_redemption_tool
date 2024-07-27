@@ -5,7 +5,10 @@ import favicon from 'serve-favicon'
 import bodyParser from 'body-parser';
 import open from 'open';
 import { get_info_for_contract_addresses, signMutualRedemption, completeMutualRedemption } from './utils/anyhedge_functions.js';
-import { encodeExtendedJson, decodeExtendedJson } from './utils/encoder.js'
+import { create_p2p_contract } from './utils/p2p_contracts_using_ui.js';
+
+import { decodeExtendedJson } from './utils/encoder.js'
+import { create } from 'domain';
 
 const app = express();
 const port = 3000;
@@ -58,9 +61,22 @@ app.get('/act_cont_script', (req, res) => {
 app.get('/settle_script', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/settle_options', 'settle_options.js'));
 });
-
+app.get('/p2p_script', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/p2p_contract', 'p2p_contract.js'));
+});
 
 // Functionality endpoints
+app.post('/submit_p2p', async (req, res) => {
+    // authentication_token = req.body.atoken;
+    // private_key = req.body.pkey;
+    let data = req.body
+    let response = await create_p2p_contract(data);
+    console.log(response)
+
+    // Send a response back
+    res.send(response);
+});
+
 app.get('/get_proposal', async (req, res) => {
 
     const contract_address = req.query.c_address;
