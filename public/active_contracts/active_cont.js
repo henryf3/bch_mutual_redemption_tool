@@ -77,7 +77,7 @@ function open_settle_page(contract_address) {
         contract_id: contract_address
     };
     let queryString = Object.keys(dataToSend).map(key => key + '=' + encodeURIComponent(dataToSend[key])).join('&');
-    window.location.href = 'settle_options.html?' + queryString;
+    window.location.href = 'settle_options/settle_options.html?' + queryString;
 }
 
 function build_text_info(object) {
