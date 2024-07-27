@@ -58,9 +58,18 @@ app.get('/act_cont_script', (req, res) => {
 app.get('/settle_script', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/settle_options', 'settle_options.js'));
 });
-
+app.get('/p2p_script', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/p2p_contract', 'p2p_contract.js'));
+});
 
 // Functionality endpoints
+app.post('/submit_p2p', async (req, res) => {
+    // authentication_token = req.body.atoken;
+    // private_key = req.body.pkey;
+    console.log("Este es el server: ", req.body)
+    res.send({ "message": "Received succesfully" });
+});
+
 app.get('/get_proposal', async (req, res) => {
 
     const contract_address = req.query.c_address;
