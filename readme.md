@@ -149,6 +149,14 @@ contact the liquidity provider, so both can generate a proposal and we can get
 a mutual redemption.
 
 # 3. How to use in case of BCH Bull Servers are down
+## Prerequisites:
+You need to take into account this:
+- Have your contracts address information, you can get it from the export function in BCHBull (see next section for details).
+- Have your BCHBull private key backed up (see how to get it at [this section](#d-set-your-credentials)). 
+- Have contracts created with Early Settlement option ENABLED, this is mandatory to be able to settle down contracts earlier.
+
+<img src="assets/bch_bull/early_settlement.png" alt="Early settlement enabled">
+
 
 ## A. Get your csv file from BCHBull export function.
 
