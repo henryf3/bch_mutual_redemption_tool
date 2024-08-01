@@ -156,7 +156,7 @@ File example for a refund (no price specified):
 ```
 
 You can replicate this step, but using the other private key (either short or long side),
-so you can have the two files for the next section, update your `.env` file updating the PRIVATE_KEY information.
+so you can have the two files for the next section.
 
 ###### Completing mutual redemption.
 
