@@ -104,19 +104,19 @@ Repeat of STRONGLY ADVISED steps to take PRIOR TO dealing with funded Private Ke
 
 <img src="assets/tool/active_cred.png" alt="Active Credentials">
 
-#### b. Loading .csv file
+##### b. Loading .csv file
 Here you need to load your csv file with the contracts information
 
 <img src="assets/tool/options_load_csv.png" alt="Load csv">
 
 
 
-#### c. Review active contract(s)
+##### c. Review active contract(s)
 <img src="assets/tool/main_scr.png" alt="Main screen">
 
 Here you can see the list of contracts that are active currently (from the list in csv option they are filtered checking the ones without settlement information). You can click in one of them to check the settlement utilities.
 
-#####  C.1. Settle utilities
+######  c.1. Settle utilities
 In this page, you have two sections, one to generate the Mutual Redemption proposal, and another to load the
 generated proposals to complete the mutual redemption.
 
