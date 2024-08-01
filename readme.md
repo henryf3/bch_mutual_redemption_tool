@@ -88,7 +88,7 @@ bitcoincash:pwgp9nq94d4lx2fwd8v27nlkkr7q6p360h2rch7c4x3ewj83pg8yzrhc5z58s,
 Or you can use the csv file provided by bchbull.
 
 
-#### Contingency Settlement Tool
+#### II. Contingency Settlement Tool
 
 ##### a. Adding credentials
 
