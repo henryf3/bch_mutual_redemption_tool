@@ -116,7 +116,7 @@ Here you need to load your csv file with the contracts information
 
 Here you can see the list of contracts that are active currently (from the list in csv option they are filtered checking the ones without settlement information). You can click in one of them to check the settlement utilities.
 
-######  c.1. Settle utilities
+#####  d. Settle utilities
 In this page, you have two sections, one to generate the Mutual Redemption proposal, and another to load the
 generated proposals to complete the mutual redemption.
 
