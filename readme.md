@@ -4,9 +4,9 @@
 
 This guide contains two main sections:
 
-- [Testing setup.](#testing-setup).
+- [Testing setup](#testing-setup).
   Check this section for a guide to test p2p contracts and its mutual redemption.
-- [Implementation Guide.](#implementation-guide). 
+- [Implementation Guide](#implementation-guide). 
   Check this section for the actual implementation guide (real scenario)
 
 ## Testing Setup 
