@@ -63,8 +63,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 
-function show_text(txt_info_id) {
-    const textBox = document.getElementById(txt_info_id);
+function show_text(object_id) {
+    const textBox = document.getElementById(object_id);
     if (textBox.classList.contains('hidden')) {
         textBox.classList.remove('hidden');
     } else {
@@ -81,6 +81,10 @@ function open_settle_page(contract_address) {
 }
 
 function build_text_info(object) {
+    let start_date = Date(Number(object.parameters.startTimestamp)).toLocaleString()
+    let maturity_date = Date(Number(object.parameters.maturityTimestamp)).toLocaleString()
+
+
     let usd_value = (object.metadata.nominalUnits / 100).toFixed(2)
     let type = object.metadata.takerSide
     let seconds = Number(object.metadata.durationInSeconds)
@@ -99,9 +103,10 @@ function build_text_info(object) {
     }
 
     let resultString = `USD Value: ${usd_value} ${duration_text} Type: ${type}`;
+    let dateString = `Start Date: ${start_date} Maturity Date: ${maturity_date}`
 
 
-    return resultString
+    return { "txt_info": resultString, "date_info": dateString }
 }
 
 function fetchData(data) {
@@ -138,17 +143,31 @@ function fetchData(data) {
             txt_info.id = "txt_info".concat(item.address);
             txt_info.className = "textbox hidden"
 
-            let info_text = build_text_info(item)
-            txt_info.innerText = info_text
+            const date_info = document.createElement('text');
+            date_info.id = "date_info".concat(item.address);
+            date_info.className = "textbox hidden"
+
+            let result_text = build_text_info(item)
+            txt_info.innerText = result_text["txt_info"]
+            date_info.innerText = result_text["date_info"]
 
             const btn_info = document.createElement('button');
             btn_info.id = "info".concat(item.address);
             btn_info.innerText = "i";
             btn_info.className = "button-black-border"
 
+            let separator = document.createElement('div');
+            separator.id = "sep".concat(item.address);
+            separator.className = "hidden"
+            separator.style.width = '1px';
+            separator.style.height = '15px'; // Adjust the height to match your buttons
+            separator.style.margin = '0 10px'; // Add space around the separator
+
 
             btn_info.addEventListener('click', function () {
                 show_text(txt_info.id);
+                show_text(separator.id);
+                show_text(date_info.id);
             });
 
 
@@ -156,6 +175,8 @@ function fetchData(data) {
             divA.appendChild(btn_info);
             divA.appendChild(btn);
             divB.appendChild(txt_info);
+            divB.appendChild(separator); // Append the separator
+            divB.appendChild(date_info);
 
             if (item.parameters.enableMutualRedemption === BigInt(1n)) {
                 cont_cnt += 1
