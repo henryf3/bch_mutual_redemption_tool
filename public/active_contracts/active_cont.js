@@ -118,9 +118,8 @@ function open_settle_page(contract_address) {
 
 function build_text_info(object) {
 
-    let start_date = Date(Number(object.parameters.startTimestamp)).toLocaleString()
-    let maturity_date = Date(Number(object.parameters.maturityTimestamp)).toLocaleString()
-    let usd_value = (object.metadata.nominalUnits / 100).toFixed(2)
+    let start_date = new Date(Number(object.parameters.startTimestamp) * 1000).toLocaleString("en-GB")
+    let maturity_date = new Date(Number(object.parameters.maturityTimestamp) * 1000).toLocaleString("en-GB")
     let type = object.metadata.takerSide
 
     let value_to_select = undefined
@@ -153,9 +152,9 @@ function build_text_info(object) {
         duration_text = `Duration: ${seconds} seconds`
     }
 
-    let resultString = `USD Value: ${usd_value} | ${duration_text} | Type: ${type}`;
+    let resultString = `${duration_text} | Type: ${type}`;
     let dateString = `Start Date: ${start_date} | Maturity Date: ${maturity_date}`
-    let original_values = `Original currency/asset: ${original_asset} | Amount: ${units_original_asset}`
+    let original_values = `Currency/asset: ${original_asset} | Amount: ${units_original_asset}`
 
     return { "txt_info": resultString, "date_info": dateString, "original_values": original_values }
 }
