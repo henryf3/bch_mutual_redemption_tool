@@ -75,7 +75,7 @@ async function get_proposal() {
     let endpointUrl = ''
     if (price !== '') {
         console.log("Price found")
-        let price_int = Number(price) * 100
+        let price_int = Number(price)
         endpointUrl = `${url}?c_address=${encodeURIComponent(contract_address)}&price=${encodeURIComponent(price_int)}`;
 
     }

@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <h1 class="top-bar">Settle Utilities</h1>
+    <div class="top-bar">Settle Utilities</div>
 
 
     <div class="container_m">
@@ -20,12 +20,20 @@
             <h3>Mutual Redemption Proposal Generation</h3>
         </div>
         <div class="container_f">
-            <label for="integerInput">Enter a price in USD (leave empty for refund):</label>
+            <label for="integerInput">Enter a price in USD with 2 decimal points. Example: 335.25. Leave empty for
+                refund:</label>
+
             <input type="number" id="priceInput" name="priceInput" class="styled-input" min="1" max="1000" step="1">
+            <p>If you are using in this contract a pair different than USD/BCH, read the instructions below.</p>
+
+            <p>1. Get your asset value compared to 1 BCH. For XAU: 1 BCH = 0,1382 XAU </p>
+            <p>2. Get the price in USD dollars. In this case: 0,1382 XAU = 336.31 USD</p>
+            <p>3. Used the obtained value in step 2 to generate the proposal (336.31)</p>
+            <p>For conversions you can use: <a href="https://www.xe.com/currencyconverter/"">www.xe.com</a></p>
         </div>
 
-        <div class="container_f">
-            <button onclick="get_proposal()" id="GMRP" class="button-black-border">Generate</button>
+        <div class=" container_f">
+                    <button onclick="get_proposal()" id="GMRP" class="button-black-border">Generate</button>
         </div>
         <div id="GenProp" class="container_f hidden">
             <p id="GenPropContent"></p>

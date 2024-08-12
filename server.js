@@ -89,14 +89,22 @@ app.get('/get_proposal', async (req, res) => {
     const contract_address = req.query.c_address;
     const price = req.query.price
 
-    let big_int_price = undefined
-    if (price !== undefined) {
-        big_int_price = BigInt(req.query.price);
+
+    let response = undefined
+    try {
+        let big_int_price = undefined
+        if (price !== undefined) {
+            big_int_price = BigInt(price * 100);
+        }
+
+        // Call your function with the extracted parameters
+        response = await signMutualRedemption(authentication_token, private_key, contract_address, big_int_price);
+
+    } catch (error) {
+        console.log(error)
+        response = { "message": "Server Error, number not valid" }
     }
 
-
-    // Call your function with the extracted parameters
-    let response = await signMutualRedemption(authentication_token, private_key, contract_address, big_int_price);
     // console.log(response)
     // Send a response back
     res.send(response);
