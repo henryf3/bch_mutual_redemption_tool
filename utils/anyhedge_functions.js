@@ -49,6 +49,9 @@ async function get_info_for_contract_addresses(a_token, p_key, contracts_ls) {
             console.log("Estatus for contract:", cont_address)
             let data = await get_status(cont_address, manager, p_key)
 
+
+            console.log(data)
+
             // console.log(data['fundings'][0]['settlement'])
             // ## Just keep the contracts without settlement
             if (data['fundings'][0]['settlement'] === undefined) {
@@ -61,7 +64,7 @@ async function get_info_for_contract_addresses(a_token, p_key, contracts_ls) {
             // Log the error to the console.
             console.error('Error:', error.message);
         }
-        console.log(c_data)
+        // console.log(c_data)
         i++;
     }
     return encodeExtendedJsonObject(c_data)

@@ -61,7 +61,43 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
+let oracleUnitsPerCommonUnitLookup = {
+    // US Dollars / Bitcoin Cash
+    '02d09db08af1ff4e8453919cc866a4be427d7bfe18f2c05e5444c196fcf6fd2818': 100,
+    // Euros / Bitcoin Cash
+    '02bb9b3324df889a66a57bc890b3452b84a2a74ba753f8842b06bba03e0fa0dfc5': 100,
+    // Chinese Yuan / Bitcoin Cash
+    '030654b9598186fe4bc9e1b0490c6b85b13991cdb9a7afa34af1bbeee22a35487a': 100,
+    // Indian Rupee / Bitcoin Cash
+    '02e82ad82eb88fcdfd02fd5e2e0a67bc6ef4139bbcb63ce0b107a7604deb9f7ce1': 1,
+    // Gold / Bitcoin Cash
+    '021f8338ccd45a7790025de198a266f252ac43c95bf81d2469feff110beeac89dd': 100000,
+    // Silver / Bitcoin Cash
+    '02712c349ebb7555b17bdbbe9f7aad5a337fa4179d0680eec3f6c8d77bac9cfa79': 1000,
+    // Bitcoin / Bitcoin Cash
+    '0245a107de5c6aabc9e7b976f26625b01474f90d1a7d11c180bec990b6938e731e': 1000000,
+    // Ethereum / Bitcoin Cash
+    '038ab22e37cf020f6bbef40111ddc51083a936f0821de56ac01f799cf15b87904d': 100000,
+};
 
+let asset = {
+    // US Dollars / Bitcoin Cash
+    '02d09db08af1ff4e8453919cc866a4be427d7bfe18f2c05e5444c196fcf6fd2818': 'USD',
+    // Euros / Bitcoin Cash
+    '02bb9b3324df889a66a57bc890b3452b84a2a74ba753f8842b06bba03e0fa0dfc5': 'EUR',
+    // Chinese Yuan / Bitcoin Cash
+    '030654b9598186fe4bc9e1b0490c6b85b13991cdb9a7afa34af1bbeee22a35487a': 'CNY',
+    // Indian Rupee / Bitcoin Cash
+    '02e82ad82eb88fcdfd02fd5e2e0a67bc6ef4139bbcb63ce0b107a7604deb9f7ce1': 'INR',
+    // Gold / Bitcoin Cash
+    '021f8338ccd45a7790025de198a266f252ac43c95bf81d2469feff110beeac89dd': 'XAU',
+    // Silver / Bitcoin Cash
+    '02712c349ebb7555b17bdbbe9f7aad5a337fa4179d0680eec3f6c8d77bac9cfa79': 'XAG',
+    // Bitcoin / Bitcoin Cash
+    '0245a107de5c6aabc9e7b976f26625b01474f90d1a7d11c180bec990b6938e731e': 'BTC',
+    // Ethereum / Bitcoin Cash
+    '038ab22e37cf020f6bbef40111ddc51083a936f0821de56ac01f799cf15b87904d': 'ETH',
+};
 
 function show_text(object_id) {
     const textBox = document.getElementById(object_id);
@@ -81,14 +117,29 @@ function open_settle_page(contract_address) {
 }
 
 function build_text_info(object) {
+
     let start_date = Date(Number(object.parameters.startTimestamp)).toLocaleString()
     let maturity_date = Date(Number(object.parameters.maturityTimestamp)).toLocaleString()
-
-
     let usd_value = (object.metadata.nominalUnits / 100).toFixed(2)
     let type = object.metadata.takerSide
+
+    let value_to_select = undefined
+    if (type === 'short') {
+        value_to_select = 'shortInputInOracleUnits'
+    } else {
+        value_to_select = 'longInputInOracleUnits'
+    }
+
+    let units_to_analyze = object.metadata[value_to_select]
+    let oracle_public_key = object.parameters.oraclePublicKey;
+    let conversion_factor = oracleUnitsPerCommonUnitLookup[oracle_public_key]
+    let units_original_asset = (units_to_analyze / conversion_factor).toFixed(5)
+    let original_asset = asset[oracle_public_key]
+
+
     let seconds = Number(object.metadata.durationInSeconds)
-    let duration_text = ""
+    let duration_text = undefined
+
     if (seconds > 86400) {
         duration_text = `Duration: ${(seconds / 86400).toFixed(2)} days`
     }
@@ -102,11 +153,11 @@ function build_text_info(object) {
         duration_text = `Duration: ${seconds} seconds`
     }
 
-    let resultString = `USD Value: ${usd_value} ${duration_text} Type: ${type}`;
-    let dateString = `Start Date: ${start_date} Maturity Date: ${maturity_date}`
+    let resultString = `USD Value: ${usd_value} | ${duration_text} | Type: ${type}`;
+    let dateString = `Start Date: ${start_date} | Maturity Date: ${maturity_date}`
+    let original_values = `Original currency/asset: ${original_asset} | Amount: ${units_original_asset}`
 
-
-    return { "txt_info": resultString, "date_info": dateString }
+    return { "txt_info": resultString, "date_info": dateString, "original_values": original_values }
 }
 
 function fetchData(data) {
@@ -147,9 +198,15 @@ function fetchData(data) {
             date_info.id = "date_info".concat(item.address);
             date_info.className = "textbox hidden"
 
+            const orig_currency = document.createElement('text');
+            orig_currency.id = "orig_currency".concat(item.address);
+            orig_currency.className = "textbox hidden"
+
             let result_text = build_text_info(item)
             txt_info.innerText = result_text["txt_info"]
             date_info.innerText = result_text["date_info"]
+            orig_currency.innerText = result_text["original_values"]
+
 
             const btn_info = document.createElement('button');
             btn_info.id = "info".concat(item.address);
@@ -161,21 +218,27 @@ function fetchData(data) {
             separator.className = "hidden"
             separator.style.width = '1px';
             separator.style.height = '15px'; // Adjust the height to match your buttons
-            separator.style.margin = '0 10px'; // Add space around the separator
 
+            let separator_2 = document.createElement('div');
+            separator_2.id = "sep2".concat(item.address);
+            separator_2.className = "hidden"
+            separator_2.style.width = '1px';
+            separator_2.style.height = '15px'; // Adjust the height to match your buttons
 
             btn_info.addEventListener('click', function () {
                 show_text(txt_info.id);
                 show_text(separator.id);
+                show_text(orig_currency.id);
+                show_text(separator_2.id);
                 show_text(date_info.id);
             });
-
-
 
             divA.appendChild(btn_info);
             divA.appendChild(btn);
             divB.appendChild(txt_info);
-            divB.appendChild(separator); // Append the separator
+            divB.appendChild(separator);
+            divB.appendChild(orig_currency);
+            divB.appendChild(separator_2);
             divB.appendChild(date_info);
 
             if (item.parameters.enableMutualRedemption === BigInt(1n)) {
