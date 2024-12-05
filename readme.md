@@ -58,7 +58,7 @@ I need to stress that NOTHING IS SAVED from the web interface.
 Just open the web page: 
 
 ```
-https://bchmutualredemption.adaptable.app/
+https://bch-mutual-redemption-tool-qa7wsg.fly.dev/
 ```
 
 ### Test Process
@@ -242,7 +242,7 @@ I need to stress that NOTHING IS SAVED from the web interface. That said, it is 
 Just open the web page: 
 
 ```
-https://bchmutualredemption.adaptable.app/
+https://bch-mutual-redemption-tool-qa7wsg.fly.dev/
 ```
 
 #### II. Use the option 'See active contracts' from the main menu
